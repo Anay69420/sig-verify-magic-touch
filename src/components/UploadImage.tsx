@@ -129,8 +129,11 @@ const UploadImage = () => {
         </p>
       </motion.div>
       
-      {/* Add the DatasetPreview component */}
-      <DatasetPreview />
+      {/* Always show the DatasetPreview component */}
+      <div className="mt-10 w-full max-w-3xl mx-auto">
+        <h2 className="text-xl font-semibold mb-4 text-center">Dataset Preview</h2>
+        <DatasetPreview alwaysShow={true} />
+      </div>
     </div>
   );
 };
