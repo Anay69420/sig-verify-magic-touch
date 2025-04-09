@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Upload, FileUp, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import DatasetPreview from './DatasetPreview';
 
 const UploadImage = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -128,12 +127,6 @@ const UploadImage = () => {
           Only JPEG/PNG images allowed
         </p>
       </motion.div>
-      
-      {/* Dataset Preview section */}
-      <div className="mt-10 w-full max-w-3xl mx-auto">
-        <h2 className="text-xl font-semibold mb-4 text-center">Dataset Preview</h2>
-        <DatasetPreview alwaysShow={true} />
-      </div>
     </div>
   );
 };
