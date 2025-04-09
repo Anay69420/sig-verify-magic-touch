@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome";
 import UploadImage from "./components/UploadImage";
 import ResultPage from "./components/ResultPage";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound"; // Change to use the page component instead
 
 const queryClient = new QueryClient();
 
