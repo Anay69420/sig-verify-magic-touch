@@ -31,8 +31,7 @@ const DatasetPreview = ({ alwaysShow = false }: DatasetPreviewProps) => {
     loadData();
   }, []);
 
-  // If not set to always show and the user hasn't toggled it, return null
-  if (!alwaysShow && !dataLoaded) {
+  if (!dataLoaded) {
     return (
       <div className="flex justify-center items-center py-8">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -52,68 +51,47 @@ const DatasetPreview = ({ alwaysShow = false }: DatasetPreviewProps) => {
         Dataset Examples
       </h3>
 
-      {!dataLoaded ? (
-        <div className="space-y-4">
-          <div>
-            <h4 className="text-md font-medium mb-2 text-green-600">Original Signatures</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <Skeleton key={`original-skeleton-${i}`} className="h-28 w-full" />
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4 className="text-md font-medium mb-2 text-red-600">Forged Signatures</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <Skeleton key={`forged-skeleton-${i}`} className="h-28 w-full" />
-              ))}
-            </div>
+      <div className="space-y-6">
+        <div>
+          <h4 className="text-md font-medium mb-2 text-green-600 flex items-center gap-1">
+            Original Signatures
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {previewData.original.map((src, index) => (
+              <div key={`original-${index}`} className="border rounded-md p-2 bg-white">
+                <img 
+                  src={src} 
+                  alt={`Original signature sample ${index + 1}`} 
+                  className="w-full h-auto object-contain"
+                />
+                <p className="text-xs text-center mt-1 text-muted-foreground">
+                  Original Sample {index + 1}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      ) : (
-        <div className="space-y-6">
-          <div>
-            <h4 className="text-md font-medium mb-2 text-green-600 flex items-center gap-1">
-              Original Signatures
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {previewData.original.map((src, index) => (
-                <div key={`original-${index}`} className="border rounded-md p-2 bg-white">
-                  <img 
-                    src={src} 
-                    alt={`Original signature sample ${index + 1}`} 
-                    className="w-full h-auto object-contain"
-                  />
-                  <p className="text-xs text-center mt-1 text-muted-foreground">
-                    Original Sample {index + 1}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div>
-            <h4 className="text-md font-medium mb-2 text-red-600 flex items-center gap-1">
-              Forged Signatures
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {previewData.forged.map((src, index) => (
-                <div key={`forged-${index}`} className="border rounded-md p-2 bg-white">
-                  <img 
-                    src={src} 
-                    alt={`Forged signature sample ${index + 1}`} 
-                    className="w-full h-auto object-contain"
-                  />
-                  <p className="text-xs text-center mt-1 text-muted-foreground">
-                    Forged Sample {index + 1}
-                  </p>
-                </div>
-              ))}
-            </div>
+        <div>
+          <h4 className="text-md font-medium mb-2 text-red-600 flex items-center gap-1">
+            Forged Signatures
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {previewData.forged.map((src, index) => (
+              <div key={`forged-${index}`} className="border rounded-md p-2 bg-white">
+                <img 
+                  src={src} 
+                  alt={`Forged signature sample ${index + 1}`} 
+                  className="w-full h-auto object-contain"
+                />
+                <p className="text-xs text-center mt-1 text-muted-foreground">
+                  Forged Sample {index + 1}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </div>
 
       <div className="mt-4 bg-amber-50 p-3 rounded-md border border-amber-200">
         <p className="text-sm flex items-start gap-2 text-amber-800">
